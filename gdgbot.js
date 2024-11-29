@@ -9,7 +9,9 @@ if (!bot) throw new Error('"BOT_TOKEN" env var is required!');
 bot.start((ctx) => {
   const username = ctx.from.username ? `@${ctx.from.username}` : ctx.from.first_name;
   ctx.reply(
-    `Welcome, ${username}! Google Developer Group is group where students who want to learn about Google's technology can get together. Any student can join. In This clubs, students help each other learn and work on projects for local businesses and their community.`,
+    `Welcome to the Haymi's-gdg-bot Bot! 🎉
+
+Hello, ${username}! Google Developer Group is group where students who want to learn about Google's technology can get together. Any student can join. In This clubs, students help each other learn and work on projects for local businesses and their community.`,
     Markup.keyboard([
       ["🌐 More on GDG"],
       ["📅 Upcoming Events", "Follow Us 👉"],
