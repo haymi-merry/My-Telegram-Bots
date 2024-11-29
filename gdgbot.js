@@ -3,12 +3,17 @@ const { Telegraf, Markup } = require("telegraf");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+//error handling
+if (!bot) throw new Error('"BOT_TOKEN" env var is required!');
+
 bot.start((ctx) => {
+  const username = ctx.from.username ? `@${ctx.from.username}` : ctx.from.first_name;
   ctx.reply(
-    "Hello, Google Developer Group is group where students who want to learn about Google's technology can get together. Any student can join. In This clubs, students help each other learn and work on projects for local businesses and their community.",
-    Markup.keyboard([["more on GDG"], ["upcoming Events", "Follow Us On"]])
-      .resize()
-      
+    `Welcome, ${username}! Google Developer Group is group where students who want to learn about Google's technology can get together. Any student can join. In This clubs, students help each other learn and work on projects for local businesses and their community.`,
+    Markup.keyboard([
+      ["🌐 More on GDG"],
+      ["📅 Upcoming Events", "Follow Us 👉"],
+    ]).resize()
   );
   
 });
@@ -17,16 +22,17 @@ bot.help((ctx) => {
   ctx.reply("How can I assist you, I am happy to help you!");
 });
 
-bot.hears("upcoming Events", (ctx) => {
-    ctx.reply("We announce that on our Social media. Stay updated, please.")
+bot.hears("📅 Upcoming Events", (ctx) => {
+  ctx.reply(
+    "There are no events at the moment. Stay tuned—new events will be announced here soon!"
+  );
 });
 
-bot.hears("more on GDG", (ctx)=>{
-    ctx.reply(
-        "please click your choice",
-        Markup.keyboard([["Leaders", "Join GDG Team"], ["Back"]] ).resize()
-      );
-      
+bot.hears("🌐 More on GDG", (ctx) => {
+  ctx.reply(
+    "please click your choice",
+    Markup.keyboard([["Leaders", "Join GDG Team"], ["Back"]]).resize()
+  );
 });
 
 bot.hears("Join GDG Team", (ctx) =>{
@@ -89,12 +95,16 @@ bot.hears("Current Lead", (ctx) => {
 
 // our contacts
 
-bot.hears("Follow Us On", (ctx) => {
-    ctx.reply("In different social medias", Markup.keyboard([ ["Telegram", "LinkdIn"], ["Facebook", "Instagram"], ["TikTok", "Back"] ]).resize()
-    
-      
-    );
-})
+bot.hears("Follow Us 👉", (ctx) => {
+  ctx.reply(
+    "In different social medias",
+    Markup.keyboard([
+      ["Telegram", "LinkdIn"],
+      ["Facebook", "Instagram"],
+      ["TikTok", "Back"],
+    ]).resize()
+  );
+});
 
 bot.hears("Telegram", (ctx) => {
     ctx.reply("Telegram: https://t.me/GDSCAAU")
@@ -121,10 +131,11 @@ bot.hears("Back", (ctx) => {
   ctx.reply(
     "Hello, Google Developer Group is a group where students who want to learn about Google's technology can get together. Any student can join. In this club, students help each other learn and work on projects for local businesses and their community.",
     Markup.keyboard([
-      ["more on GDG"],
-      ["upcoming Events", "Follow Us On"],
+      ["🌐 More on GDG"],
+      ["📅 Upcoming Events", "Follow Us 👉"],
     ]).resize()
   );
 });
+
 
 bot.launch();
