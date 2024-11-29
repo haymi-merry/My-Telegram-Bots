@@ -101,7 +101,7 @@ bot.hears("Follow Us 👉", (ctx) => {
   ctx.reply(
     "In different social medias",
     Markup.keyboard([
-      ["Telegram", "LinkdIn"],
+      ["Telegram", "LinkedIn"],
       ["Facebook", "Instagram"],
       ["TikTok", "Back"],
     ]).resize()
@@ -116,8 +116,8 @@ bot.hears("Facebook", (ctx) => {
     ctx.reply("Facebook: https://www.facebook.com/share/98dW8ynXNnngZ8s1/ ")
 })
 
-bot.hears("LinkdIn", (ctx) => {
-    ctx.reply("LinkdIn: https://www.linkedin.com/groups/13031196")
+bot.hears("LinkedIn", (ctx) => {
+    ctx.reply("LinkedIn: https://www.linkedin.com/groups/13031196")
 })
 
 bot.hears("Instagram", (ctx) => {
@@ -136,6 +136,12 @@ bot.hears("Back", (ctx) => {
       ["🌐 More on GDG"],
       ["📅 Upcoming Events", "Follow Us 👉"],
     ]).resize()
+  );
+});
+
+bot.on("text", (ctx) => {
+  ctx.reply(
+    "Sorry, I couldn't understand that. Please choose an option from the menu."
   );
 });
 
